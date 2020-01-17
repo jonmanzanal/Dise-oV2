@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="6.server" name="4.6_eAuctions_Server_v2">    
+	<property name="src.dir" location="src"/>
+   	<property name="bin.dir" location="bin"/>
+	<property name="dist.dir" location="dist"/>
+	<property name="lib.dir" location="lib"/>
+	<property name="resources.dir" location="resources"/>
+	<property name="export.file" value="iberia.jar"/>
+	<property name="policy.file" location="security/java.policy"/>	
+	<property name="rmiregistry.IP" value="127.0.0.1"/> 
+	<property name="rmiregistry.port" value="1099"/> 
+	<property name="server.name" value="IberiaRMI"/>
+
+	<path id="classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <pathelement location="${bin.dir}"/>
+        <pathelement location="${resources.dir}"/>
+    </path>
+	
+	<target name="1.build" description="Builds the project">
+			<delete dir="${bin.dir}"/>
+			<mkdir dir="${bin.dir}"/>
+			<javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="classpath" deprecation="true" fork="true" includeantruntime="no"/>
+	    </target>
+	<target name="2.enhance-classes" depends="1.build" description="Adds JDO code to the persisten compiled classes">
+			    	<taskdef name="enhancer" classpathref="classpath" classname="org.datanucleus.enhancer.EnhancerTask"/>
+			   		<enhancer classpathref="classpath" failonerror="true">
+			            <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
+			            <fileset dir="${bin.dir}">
+			                <include name="**/data/*.class"/>
+			            </fileset>
+			   		</enhancer>
+			    </target>
+
+	<target name="3.export"  description="Export classes into a .jar file">
+				<delete dir="${dist.dir}"/>
+				<mkdir dir="${dist.dir}"/>
+				<jar destfile="${dist.dir}/${export.file}" basedir="${bin.dir}" includes="**/iberia_remote/IberiaFacade.class, **/iberia_remote/Flight.class"/>
+			</target>
+	
+	<target name="6.server"  description="Runs the Server">
+		<java classname="iberia_server.ServerIberia" classpathref="classpath" fork="true">
+        	<jvmarg value="-Djava.rmi.server.codebase=file:${bin.dir}/"/>
+			<jvmarg value="-Djava.security.policy=${policy.file}"/>
+			<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
+        	<arg value="${rmiregistry.IP}"/> 
+	 		<arg value="${rmiregistry.port}"/> 
+			<arg value="${server.name}"/> 
+        </java>
+    </target>
+</project>
