@@ -50,8 +50,8 @@ public class VueloAssembler {
 		return dto;
 	}
 	
-	public List<VueloDTO> entityToDTOs(List<Vuelo> vuelos) {
-		List<VueloDTO> dtos = new ArrayList<>();
+	public Set<VueloDTO> entityToDTOs(Set<Vuelo> vuelos) {
+		Set<VueloDTO> dtos = new HashSet<>();
 		
 		for (Vuelo v : vuelos) {
 			dtos.add(this.entityToDTO(v));
@@ -59,8 +59,8 @@ public class VueloAssembler {
 		
 		return dtos;		
 	}
-	public List<Vuelo> DTOtoentitys(List<VueloDTO> dto) {
-		List<Vuelo> vuelos = new ArrayList<>();
+	public Set<Vuelo> DTOtoentitys(Set<VueloDTO> dto) {
+		Set<Vuelo> vuelos = new HashSet<>();
 		
 		for (VueloDTO v : dto) {
 			vuelos.add(this.DTOToentity(v));

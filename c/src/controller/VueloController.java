@@ -2,6 +2,7 @@ package controller;
 
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Set;
 
 import dto.ReservaDTO;
 import dto.VueloDTO;
@@ -14,7 +15,7 @@ public class VueloController {
 		this.serviceLocator = serviceLocator;
 	}
 	
-	public List<VueloDTO> buscarVuelos() {
+	public Set<VueloDTO> buscarVuelos() {
 		System.out.println("controller vuelo");
 		try {
 			return this.serviceLocator.getService().getVuelos();

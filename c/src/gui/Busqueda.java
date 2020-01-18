@@ -8,7 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
@@ -26,7 +28,7 @@ import javax.swing.JScrollBar;
 
 public class Busqueda extends JFrame {
 	private static int contadorClose=0;
-	public List <VueloDTO> vuelos=new ArrayList<VueloDTO>();
+	public Set<VueloDTO> vuelos=new HashSet<VueloDTO>();
 	public VueloController controller;
 	private JTextField textField;
 	private JTextField textField_1;

@@ -2,7 +2,9 @@ package IberiaRMI;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import data.Aeropuerto;
 import data.Vuelo;
@@ -17,11 +19,11 @@ public class ConexionIberia implements IGatewayIberia {
 	}
 
 	@Override
-	public List<Vuelo> buscarVuelos() {
+	public Set<Vuelo> buscarVuelos() {
 		try {
 			System.out.println("conexion iberia buscar vuelos");
-			List<Flight> flights= this.serviceLocator.getService().getVuelos();
-			List<Vuelo> vuelos = new ArrayList <Vuelo>();
+			Set<Flight> flights= this.serviceLocator.getService().getVuelos();
+			Set<Vuelo> vuelos = new HashSet <Vuelo>();
 			for(Flight f:flights) {
 				System.out.println("syso para f");
 				System.out.println(f.getCod_avion());

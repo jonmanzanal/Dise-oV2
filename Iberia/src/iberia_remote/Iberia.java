@@ -5,14 +5,15 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 
 import iberia_remote.IberiaFacade;
 
 public class Iberia  extends UnicastRemoteObject implements IberiaFacade {
 	
-	private static List<Flight> vuelos=new ArrayList<Flight>();
+	private static Set<Flight> vuelos=new HashSet<Flight>();
 	private static Iberia instance;
 		/**
 		 * 
@@ -45,7 +46,7 @@ public class Iberia  extends UnicastRemoteObject implements IberiaFacade {
 		}
 
 	@Override
-	public List<Flight> getVuelos() throws RemoteException {
+	public Set<Flight> getVuelos() throws RemoteException {
 		System.out.println("entra a iberia para consguir vuelos flight");
 		return vuelos;
 	}

@@ -3,6 +3,7 @@ package remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+import java.util.Set;
 
 import data.Usuario;
 import dto.ReservaDTO;
@@ -48,7 +49,7 @@ public class AuctionServer  extends UnicastRemoteObject implements IAuction {
 	}
 
 	@Override
-	public List<VueloDTO> getVuelos() throws RemoteException {
+	public Set<VueloDTO> getVuelos() throws RemoteException {
 		System.out.println("Buscando vuelos");
 		
 		return AeroIbService.getInstance().getVuelos();

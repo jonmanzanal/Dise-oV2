@@ -1,8 +1,6 @@
 package data;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.jdo.annotations.NotPersistent;
@@ -21,7 +19,7 @@ public class Aeropuerto  {
 	@NotPersistent
 	private String pais;
 	@NotPersistent
-	private List<Vuelo> vuelos;
+	private Set<Vuelo> vuelos;
 	@NotPersistent
 	private int num_terminales;
 
@@ -31,7 +29,7 @@ public class Aeropuerto  {
 		this.nombre = "";
 		this.ciudad = "";
 		this.pais = "";
-		this.vuelos = new ArrayList<Vuelo>();
+		this.vuelos = new HashSet<Vuelo>();
 		this.num_terminales=0;
 	}
 
@@ -67,11 +65,11 @@ public class Aeropuerto  {
 		this.pais = pais;
 	}
 
-	public List<Vuelo> getVuelos() {
+	public Set<Vuelo> getVuelos() {
 		return vuelos;
 	}
 
-	public void setVuelos(List<Vuelo> vuelos) {
+	public void setVuelos(Set<Vuelo> vuelos) {
 		this.vuelos = vuelos;
 	}
 

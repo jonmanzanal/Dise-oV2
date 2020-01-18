@@ -1,6 +1,7 @@
 package services;
 
 import java.util.List;
+import java.util.Set;
 
 import IberiaRMI.ConexionIberia;
 import IberiaRMI.IberiaMain;
@@ -24,7 +25,7 @@ private static AeroIbService instance;
 		return instance;
 	}
 	
-	public List<VueloDTO> getVuelos() {
+	public Set<VueloDTO> getVuelos() {
 		ConexionIberia ci= IberiaMain.Loko();
 		System.out.println("service despues de iberia");
 		return VueloAssembler.getInstance().entityToDTOs(ci.buscarVuelos());

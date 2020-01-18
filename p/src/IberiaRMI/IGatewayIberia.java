@@ -1,6 +1,7 @@
 package IberiaRMI;
 
 import java.util.List;
+import java.util.Set;
 
 import data.Vuelo;
 import iberia_remote.Flight;
@@ -8,6 +9,6 @@ import iberia_remote.Flight;
 
 
 public interface IGatewayIberia {
-public List<Vuelo> buscarVuelos();
+public Set<Vuelo> buscarVuelos();
 
 }

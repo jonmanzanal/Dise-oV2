@@ -42,7 +42,7 @@ public class GestorBD implements IGestionDAO{
 		//Create Sample data
 		Set<Reserva> lires = new HashSet<>();
 		Set<String> pas = new HashSet<>();
-		List<Vuelo> vu = new ArrayList<>();
+		Set<Vuelo> vu = new HashSet<>();
 		Date fecha = new Date();
 		String f = "12/03/2013";
 		DateFormat format = new SimpleDateFormat("DD/MM/YYYY");
