@@ -20,18 +20,25 @@ import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 
 import controller.VueloController;
+import dto.UsuarioDTO;
 import dto.VueloDTO;
 import javax.swing.JScrollBar;
 
 public class Busqueda extends JFrame {
+	private static int contadorClose=0;
 	public List <VueloDTO> vuelos=new ArrayList<VueloDTO>();
 	public VueloController controller;
 	private JTextField textField;
 	private JTextField textField_1;
 	private String c;
 	private String u;
-	public Busqueda(VueloController controller) {
+	private String usu;
+	public Busqueda(VueloController controller,String conexion,String usuario) {
 		this.controller = controller;
+		this.usu=usuario;
+		if(conexion.equals("si")) {
+			contadorClose++;
+		}
 		initComponents();
 	}
 	
@@ -96,8 +103,10 @@ public class Busqueda extends JFrame {
 		            int posicion = list_1.locationToIndex(e.getPoint());
 		            
 		            VueloDTO s=(VueloDTO) modelo.getElementAt(posicion);
+		            UsuarioDTO user= new UsuarioDTO();
+		            user.setEmail(Busqueda.this.usu);
 		          
-		            Pago p=new Pago(controller);
+		            Pago p=new Pago(controller,s,user);
 		            p.setVisible(true);
 		            dispose();
 		            

@@ -42,7 +42,7 @@ public class GestorBD implements IGestionDAO{
 		//Create Sample data
 		Set<Reserva> lires = new HashSet<>();
 		Set<String> pas = new HashSet<>();
-		Set<Vuelo> vu = new HashSet<>();
+		List<Vuelo> vu = new ArrayList<>();
 		Date fecha = new Date();
 		String f = "12/03/2013";
 		DateFormat format = new SimpleDateFormat("DD/MM/YYYY");
@@ -84,7 +84,7 @@ public class GestorBD implements IGestionDAO{
 		//u.setNombre("dd");
 		//u.setTiporedsocial(1);
 		//u.setReserva(lires);
-
+/*
 		Reserva r = new Reserva();
 		r.setFecha(fecha);
 		r.setImporte(100);
@@ -94,7 +94,7 @@ public class GestorBD implements IGestionDAO{
 		//r.setUsuario(u);
 		r.setVuelo(v);
 		lires.add(r);
-
+*/
 		ar.setId_aer("HH");
 		ar.setNombre("Iberia");
 		ar.setVuelo(vu);

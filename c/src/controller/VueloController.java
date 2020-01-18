@@ -3,6 +3,7 @@ package controller;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import dto.ReservaDTO;
 import dto.VueloDTO;
 import remote.ServiceLocator;
 
@@ -33,6 +34,26 @@ public class VueloController {
 		}
 		return true;
 	}
+	public boolean close() {
+		try {
+			return this.serviceLocator.getService().close();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
+	public boolean almacenarReserva(ReservaDTO res) {
+		try {
+			System.out.println("Entra VueloController");
+			this.serviceLocator.getService().guardardato(res);
+			return true;
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+		
+	}
 	
 	}

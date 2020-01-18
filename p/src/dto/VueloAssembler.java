@@ -2,7 +2,9 @@ package dto;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import data.Vuelo;
 
@@ -34,7 +36,7 @@ public class VueloAssembler {
 		dto.setHora_llegada(vuelo.getHora_llegada());
 		dto.setHora_salida(vuelo.getHora_salida());
 	
-		dto.setImporte(10);
+		dto.setImporte(Math.random()*100);
 		
 		dto.setDestino(AeropuertoAssembler.getInstance().entityToDTO(vuelo.getAeropuerto()));
 		
@@ -48,7 +50,7 @@ public class VueloAssembler {
 		return dto;
 	}
 	
-	public List<VueloDTO> entityToDTO(List<Vuelo> vuelos) {
+	public List<VueloDTO> entityToDTOs(List<Vuelo> vuelos) {
 		List<VueloDTO> dtos = new ArrayList<>();
 		
 		for (Vuelo v : vuelos) {
@@ -56,6 +58,15 @@ public class VueloAssembler {
 		}
 		
 		return dtos;		
+	}
+	public List<Vuelo> DTOtoentitys(List<VueloDTO> dto) {
+		List<Vuelo> vuelos = new ArrayList<>();
+		
+		for (VueloDTO v : dto) {
+			vuelos.add(this.DTOToentity(v));
+		}
+		
+		return vuelos;		
 	}
 	public Vuelo DTOToentity(VueloDTO dto) {
 		System.out.println("entro a vueloassembler");

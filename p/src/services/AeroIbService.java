@@ -27,7 +27,7 @@ private static AeroIbService instance;
 	public List<VueloDTO> getVuelos() {
 		ConexionIberia ci= IberiaMain.Loko();
 		System.out.println("service despues de iberia");
-		return VueloAssembler.getInstance().entityToDTO(ci.buscarVuelos());
+		return VueloAssembler.getInstance().entityToDTOs(ci.buscarVuelos());
 
 }
 }

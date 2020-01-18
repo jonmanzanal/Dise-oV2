@@ -69,6 +69,11 @@ public class AuctionServer  extends UnicastRemoteObject implements IAuction {
 		int a=0;
 		a=PagoService.getInstance().pagar(usuario, importe);
 		System.out.println("El int es "+a);
+		if(a>0) {
+			System.out.println("Pago completado con exito");
+			return true;
+		}
+		System.out.println("Pago no completado, supera su saldo");
 		return false;
 	}
 
@@ -76,6 +81,11 @@ public class AuctionServer  extends UnicastRemoteObject implements IAuction {
 	public void guardardato(ReservaDTO dto) throws RemoteException {
 		 DBService.getInstance().guardardato(dto);
 		
+	}
+	@Override
+	public boolean close() throws RemoteException {
+		boolean b=PagoService.getInstance().close();
+		return b;
 	}
 
 

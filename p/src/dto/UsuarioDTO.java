@@ -15,6 +15,7 @@ public class UsuarioDTO implements Serializable {
 	private String nombre;
 	private String apellidos;
 	private int tiporedsocial;
+	private AeropuertoDTO aeropuertopordefecto;
 	private Set<Reserva> reserva;
 	public Set<Reserva> getReserva() {
 		return reserva;
@@ -22,13 +23,13 @@ public class UsuarioDTO implements Serializable {
 	public void setReserva(Set<Reserva> reserva) {
 		this.reserva = reserva;
 	}
-	public Aeropuerto getAeropuertopordefecto() {
+	public AeropuertoDTO getAeropuertopordefecto() {
 		return aeropuertopordefecto;
 	}
-	public void setAeropuertopordefecto(Aeropuerto aeropuertopordefecto) {
+	public void setAeropuertopordefecto(AeropuertoDTO aeropuertopordefecto) {
 		this.aeropuertopordefecto = aeropuertopordefecto;
 	}
-	private Aeropuerto aeropuertopordefecto;
+	
 	public String getEmail() {
 		return email;
 	}

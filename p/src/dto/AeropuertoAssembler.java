@@ -22,23 +22,23 @@ public class AeropuertoAssembler {
 		dto.setIdaero(aeropuerto.getIdaero());
 		dto.setNombre(aeropuerto.getNombre());
 		dto.setNum_terminales(aeropuerto.getNum_terminales());
-		dto.setVuelos(aeropuerto.getVuelos());
+		dto.setVuelos(VueloAssembler.getInstance().entityToDTOs(aeropuerto.getVuelos()));
 		
 		
 				
 		return dto;
 	}
 	
-	public Aeropuerto DTOToentity(AeropuertoDTO aeropuerto) {
-		Aeropuerto dto = new Aeropuerto();
+	public Aeropuerto DTOToentity(AeropuertoDTO dto) {
+		Aeropuerto aeropuerto = new Aeropuerto();
 		
-		dto.setIdaero(aeropuerto.getIdaero());
-		dto.setNombre(aeropuerto.getNombre());
-		dto.setNum_terminales(aeropuerto.getNum_terminales());
-		dto.setVuelos(aeropuerto.getVuelos());
+		aeropuerto.setIdaero(dto.getIdaero());
+		aeropuerto.setNombre(dto.getNombre());
+		aeropuerto.setNum_terminales(dto.getNum_terminales());
+		aeropuerto.setVuelos(VueloAssembler.getInstance().DTOtoentitys(dto.getVuelos()));
 		
 		
 				
-		return dto;
+		return aeropuerto;
 	}
 }

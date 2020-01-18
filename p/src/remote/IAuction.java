@@ -12,4 +12,5 @@ public interface IAuction extends Remote{
 	public List<VueloDTO> getVuelos() throws RemoteException;
 	public void guardardato(ReservaDTO dto) throws RemoteException;
 	public boolean pagar(String usuario, int importe) throws RemoteException;
+	boolean close() throws RemoteException;
 }

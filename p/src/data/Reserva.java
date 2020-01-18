@@ -1,7 +1,9 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.jdo.annotations.PersistenceCapable;
@@ -13,7 +15,7 @@ public class Reserva {
 	private int numasientos;
 	private Usuario usuario;
 	private Vuelo vuelo;
-	private Set<String> listapasajeros;
+	private List<String> listapasajeros;
 	private Date fecha;
 	private double importetotal;
 	private Metodo_pago metodo;
@@ -24,7 +26,7 @@ public class Reserva {
 		this.numasientos = 0;
 		this.usuario = null;
 		this.vuelo = null;
-		this.listapasajeros = new HashSet<>();
+		this.listapasajeros = new ArrayList<>();
 		this.fecha = null;
 		this.importetotal = 0.0;
 		this.metodo = null;
@@ -54,11 +56,11 @@ public class Reserva {
 		this.vuelo = vuelo;
 	}
 
-	public Set<String> getLista_pasajeros() {
+	public List<String> getLista_pasajeros() {
 		return listapasajeros;
 	}
 
-	public void setLista_pasajeros(Set<String> lista_pasajeros) {
+	public void setLista_pasajeros(List<String> lista_pasajeros) {
 		this.listapasajeros = lista_pasajeros;
 	}
 

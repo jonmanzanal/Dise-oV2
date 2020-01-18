@@ -81,7 +81,7 @@ public class Google  extends JFrame  {
 		System.out.println("    * Login result: " + loginResult);
 		if(loginResult) {
 			JOptionPane.showMessageDialog(null, "Login correcto");
-			Busqueda bus=new Busqueda(vuelocontroller);
+			Busqueda bus=new Busqueda(vuelocontroller,"no",u);
 			bus.setVisible(true);
 			dispose();	
 		}else {

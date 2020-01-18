@@ -24,6 +24,7 @@ public class PaypalService extends Thread {
 		    this.in = new DataInputStream(socket.getInputStream());
 			this.out = new DataOutputStream(socket.getOutputStream());
 			this.start();
+			monederos.add(new Monedero("jese",30000));
 			monederos.add(new Monedero("jorge",50));
 			monederos.add(new Monedero("pepe",270));
 			monederos.add(new Monedero("persa",410));

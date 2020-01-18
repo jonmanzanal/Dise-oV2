@@ -25,7 +25,7 @@ public class UsuarioAssembler {
 		dto.setNombre(usuario.getNombre());
 		dto.setApellidos(usuario.getApellidos());
 		dto.setTiporedsocial(usuario.getTiporedsocial());
-		dto.setAeropuertopordefecto(usuario.getAeropuertopordefecto());
+		dto.setAeropuertopordefecto(AeropuertoAssembler.getInstance().entityToDTO(usuario.getAeropuertopordefecto()));
 		dto.setReserva(usuario.getReserva());
 		
 		
@@ -39,9 +39,9 @@ public class UsuarioAssembler {
 		u.setEmail(dto.getEmail());
 		u.setNombre(dto.getNombre());
 		u.setTiporedsocial(dto.getTiporedsocial());
-		u.setAeropuertopordefecto(dto.getAeropuertopordefecto());
+		u.setAeropuertopordefecto(AeropuertoAssembler.getInstance().DTOToentity(dto.getAeropuertopordefecto()));
 		u.setReserva(dto.getReserva());
-		return null;
+		return u;
 		
 		
 	}

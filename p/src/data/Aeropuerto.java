@@ -1,6 +1,8 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.jdo.annotations.NotPersistent;
@@ -8,7 +10,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
 @PersistenceCapable
-public class Aeropuerto {
+public class Aeropuerto  {
 
 	@Persistent
 	private String idaero;
@@ -19,7 +21,7 @@ public class Aeropuerto {
 	@NotPersistent
 	private String pais;
 	@NotPersistent
-	private Set<Vuelo> vuelos;
+	private List<Vuelo> vuelos;
 	@NotPersistent
 	private int num_terminales;
 
@@ -29,7 +31,7 @@ public class Aeropuerto {
 		this.nombre = "";
 		this.ciudad = "";
 		this.pais = "";
-		this.vuelos = new HashSet<Vuelo>();
+		this.vuelos = new ArrayList<Vuelo>();
 		this.num_terminales=0;
 	}
 
@@ -65,11 +67,11 @@ public class Aeropuerto {
 		this.pais = pais;
 	}
 
-	public Set<Vuelo> getVuelos() {
+	public List<Vuelo> getVuelos() {
 		return vuelos;
 	}
 
-	public void setVuelos(Set<Vuelo> vuelos) {
+	public void setVuelos(List<Vuelo> vuelos) {
 		this.vuelos = vuelos;
 	}
 

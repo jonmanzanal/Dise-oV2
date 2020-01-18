@@ -28,7 +28,7 @@ private static PagoService instance;
 	public int pagar(String email,double importe) {
 		System.out.println("PagoService");
 		String ip="localhost";
-		int port= 35603;
+		int port= 35607;
 		int data2=0;
 		DataOutputStream out;
 		try {
@@ -50,5 +50,24 @@ private static PagoService instance;
 		
 		return data2;
 }
+	public boolean close() {
+		System.out.println("PagoService");
+		String ip="localhost";
+		int port= 35670;
+		DataOutputStream out;
+		try {
+			System.out.println("pagoservice close");
+			Socket s= new Socket(ip,port);
+			String datos= "close";
+			out = new DataOutputStream(s.getOutputStream());
+			out.writeUTF(datos);
+			s.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 
 }

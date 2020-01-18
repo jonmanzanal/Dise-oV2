@@ -2,18 +2,19 @@ package dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 
 
-public class ReservaDTO implements Serializable{
+public class ReservaDTO implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private int res;
 	private int numasientos;
-	private Set<String> listapasajeros;
+	private List<String> listapasajeros;
 	private Date fecha;
 	private double importetotal;
 	private UsuarioDTO usuariodto;
@@ -31,10 +32,10 @@ public class ReservaDTO implements Serializable{
 	public void setNumasientos(int numasientos) {
 		this.numasientos = numasientos;
 	}
-	public Set<String> getListapasajeros() {
+	public List<String> getListapasajeros() {
 		return listapasajeros;
 	}
-	public void setListapasajeros(Set<String> listapasajeros) {
+	public void setListapasajeros(List<String> listapasajeros) {
 		this.listapasajeros = listapasajeros;
 	}
 	public Date getFecha() {
