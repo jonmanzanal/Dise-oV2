@@ -13,20 +13,20 @@ public class VueloDTO implements Serializable {
 	private String hora_llegada;
 	private Date fecha;
 	private double importe;
-	private String origen;
-	private String destino;
+	private AeropuertoDTO origen;
+	private AeropuertoDTO destino;
 	
 	
-	public String getOrigen() {
+	public AeropuertoDTO getOrigen() {
 		return origen;
 	}
-	public void setOrigen(String origen) {
+	public void setOrigen(AeropuertoDTO origen) {
 		this.origen = origen;
 	}
-	public String getDestino() {
+	public AeropuertoDTO getDestino() {
 		return destino;
 	}
-	public void setDestino(String destino) {
+	public void setDestino(AeropuertoDTO destino) {
 		this.destino = destino;
 	}
 	

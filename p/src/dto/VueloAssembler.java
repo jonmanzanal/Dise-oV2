@@ -27,23 +27,23 @@ public class VueloAssembler {
 		VueloDTO dto = new VueloDTO();
 		
 		dto.setIdvu(vuelo.getId_vu());
-		System.out.println("parselong");
+		;
 		Date d= new Date(100,2,8);
 		dto.setFecha(d);
-		System.out.println("llego date");
+		
 		dto.setHora_llegada(vuelo.getHora_llegada());
 		dto.setHora_salida(vuelo.getHora_salida());
-		System.out.println("horas");
+	
 		dto.setImporte(10);
-		System.out.println("importe");
-		dto.setDestino(vuelo.getAeropuerto().getNombre());
-		System.out.println("print1");
-		System.out.println(vuelo.getAeropuerto().getNombre());
-		dto.setOrigen(vuelo.getAeropuerto2().getNombre());
-		System.out.println(vuelo.getAeropuerto2().getNombre());
-		System.out.println("print2");
 		
-		System.out.println("entitytodto");
+		dto.setDestino(AeropuertoAssembler.getInstance().entityToDTO(vuelo.getAeropuerto()));
+		
+		System.out.println(vuelo.getAeropuerto().getNombre());
+		dto.setOrigen(AeropuertoAssembler.getInstance().entityToDTO(vuelo.getAeropuerto2()));
+		System.out.println(vuelo.getAeropuerto2().getNombre());
+		
+		
+		
 				
 		return dto;
 	}
@@ -56,5 +56,19 @@ public class VueloAssembler {
 		}
 		
 		return dtos;		
+	}
+	public Vuelo DTOToentity(VueloDTO dto) {
+		System.out.println("entro a vueloassembler");
+		Vuelo v = new Vuelo();
+		
+		
+		v.setId_vu(dto.getIdvu());
+		v.setHora_llegada(dto.getHora_llegada());
+		v.setHora_salida(dto.getHora_salida());
+		v.setAeropuerto(AeropuertoAssembler.getInstance().DTOToentity(dto.getDestino()));
+		v.setAeropuerto2(AeropuertoAssembler.getInstance().DTOToentity(dto.getOrigen()));
+		
+				
+		return v;
 	}
 }

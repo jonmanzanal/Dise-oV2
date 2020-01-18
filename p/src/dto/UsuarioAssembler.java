@@ -33,5 +33,18 @@ public class UsuarioAssembler {
 		return dto;
 	}
 	
+	public Usuario DTOtoentity(UsuarioDTO dto) {
+		Usuario u=new Usuario();
+		u.setApellidos(dto.getApellidos());
+		u.setEmail(dto.getEmail());
+		u.setNombre(dto.getNombre());
+		u.setTiporedsocial(dto.getTiporedsocial());
+		u.setAeropuertopordefecto(dto.getAeropuertopordefecto());
+		u.setReserva(dto.getReserva());
+		return null;
+		
+		
+	}
+	
 	
 }

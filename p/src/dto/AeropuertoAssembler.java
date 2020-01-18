@@ -29,4 +29,16 @@ public class AeropuertoAssembler {
 		return dto;
 	}
 	
+	public Aeropuerto DTOToentity(AeropuertoDTO aeropuerto) {
+		Aeropuerto dto = new Aeropuerto();
+		
+		dto.setIdaero(aeropuerto.getIdaero());
+		dto.setNombre(aeropuerto.getNombre());
+		dto.setNum_terminales(aeropuerto.getNum_terminales());
+		dto.setVuelos(aeropuerto.getVuelos());
+		
+		
+				
+		return dto;
+	}
 }

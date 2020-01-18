@@ -16,6 +16,8 @@ public class ReservaDTO implements Serializable{
 	private Set<String> listapasajeros;
 	private Date fecha;
 	private double importetotal;
+	private UsuarioDTO usuariodto;
+	private VueloDTO vuelodto;
 	
 	public int getRes() {
 		return res;
@@ -46,6 +48,18 @@ public class ReservaDTO implements Serializable{
 	}
 	public void setImportetotal(double importetotal) {
 		this.importetotal = importetotal;
+	}
+	public UsuarioDTO getUsuariodto() {
+		return usuariodto;
+	}
+	public void setUsuariodto(UsuarioDTO usuariodto) {
+		this.usuariodto = usuariodto;
+	}
+	public VueloDTO getVuelodto() {
+		return vuelodto;
+	}
+	public void setVuelodto(VueloDTO vuelodto) {
+		this.vuelodto = vuelodto;
 	}
 	
 	

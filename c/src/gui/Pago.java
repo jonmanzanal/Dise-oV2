@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JButton;
 
@@ -23,7 +25,7 @@ public class Pago extends JFrame {
 	}
 	public void initcomponentes() {
 		JTextField anadir = new JTextField();;
-		ArrayList<String> c=new ArrayList<String>();
+		Set<String> c=new HashSet<String>();
 		
 		
 		getContentPane().setLayout(null);
@@ -66,6 +68,7 @@ public class Pago extends JFrame {
 					textField.setText(string);
 				
 				}
+				
 				boolean pagoresult= controller.pagar("pepe", 20*c.size());
 				
 			}

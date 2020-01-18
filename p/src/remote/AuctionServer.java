@@ -5,8 +5,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 import data.Usuario;
+import dto.ReservaDTO;
 import dto.VueloDTO;
 import services.AeroIbService;
+import services.DBService;
 import services.LoginService;
 import services.PagoService;
 
@@ -52,11 +54,7 @@ public class AuctionServer  extends UnicastRemoteObject implements IAuction {
 		return AeroIbService.getInstance().getVuelos();
 	}
 
-	@Override
-	public boolean makeBid(long aArticle, float aBid) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	@Override
 	public boolean registro(String email) throws RemoteException {
@@ -72,6 +70,12 @@ public class AuctionServer  extends UnicastRemoteObject implements IAuction {
 		a=PagoService.getInstance().pagar(usuario, importe);
 		System.out.println("El int es "+a);
 		return false;
+	}
+
+	@Override
+	public void guardardato(ReservaDTO dto) throws RemoteException {
+		 DBService.getInstance().guardardato(dto);
+		
 	}
 
 
