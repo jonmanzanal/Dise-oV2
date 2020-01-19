@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import controller.LoginController;
 import controller.VueloController;
+import dto.UsuarioDTO;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -61,6 +62,21 @@ public class Google  extends JFrame  {
 		btnNewButton.setBounds(284, 203, 89, 23);
 		getContentPane().add(btnNewButton);
 		
+		JButton btnNewButton_1 = new JButton("Atras");
+		btnNewButton_1.setBounds(98, 203, 89, 23);
+		getContentPane().add(btnNewButton_1);
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Inicio i=new Inicio(controller, vuelocontroller);
+				i.setVisible(true);
+				dispose();
+				
+			}
+		});
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -81,7 +97,7 @@ public class Google  extends JFrame  {
 		System.out.println("    * Login result: " + loginResult);
 		if(loginResult) {
 			JOptionPane.showMessageDialog(null, "Login correcto");
-			Busqueda bus=new Busqueda(vuelocontroller,"no",u);
+			Busqueda bus=new Busqueda(vuelocontroller,"no",u,controller);
 			bus.setVisible(true);
 			dispose();	
 		}else {

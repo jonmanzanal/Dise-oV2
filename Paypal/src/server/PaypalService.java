@@ -24,10 +24,11 @@ public class PaypalService extends Thread {
 		    this.in = new DataInputStream(socket.getInputStream());
 			this.out = new DataOutputStream(socket.getOutputStream());
 			this.start();
-			monederos.add(new Monedero("jese",30000));
-			monederos.add(new Monedero("jorge",50));
+			monederos.add(new Monedero("jese",3000));
+			monederos.add(new Monedero("jorge",520));
 			monederos.add(new Monedero("pepe",270));
-			monederos.add(new Monedero("persa",410));
+			monederos.add(new Monedero("andres",864));
+			monederos.add(new Monedero("asucar",710));
 			
 		} catch (IOException e) {
 			System.err.println("# TranslationService - TCPConnection IO error:" + e.getMessage());
@@ -55,21 +56,38 @@ public class PaypalService extends Thread {
 	}
 	
 	public String translate(String msg) {
-		System.out.println(msg);
-		
-		StringTokenizer stk= new StringTokenizer(msg,DELIMITER);
-		String username= stk.nextToken();
-		String importe= stk.nextToken();
 		String respuesta="";
-		double cantidad=Double.parseDouble(importe);
-		for(Monedero m:monederos) {
-			if(username.equals(m.getUsuario())) {
-				double saldo=m.getSaldo();
-				double restante=saldo-cantidad;
-				m.setSaldo((int)restante);
-				respuesta=Double.toString(restante);
+		
+		if(msg.equals("close")) {
+			try {
+				System.out.println("cerrar socket");
+				tcpSocket.close();
+				System.out.println("seguimos");
+				PaypalServer.tcpServerSocket.close();
+				System.out.println("lololol");
+			} catch (IOException e) {
+				System.err.println("   # TranslationService - TCPConnection IO error:" + e.getMessage());
+			}
+			
+		}else {
+			System.out.println(msg);
+			
+			StringTokenizer stk= new StringTokenizer(msg,DELIMITER);
+			String username= stk.nextToken();
+			String importe= stk.nextToken();
+			double cantidad=Double.parseDouble(importe);
+			for(Monedero m:monederos) {
+				if(username.equals(m.getUsuario())) {
+					double saldo=m.getSaldo();
+					double restante=saldo-cantidad;
+					if(restante>0) {
+					m.setSaldo((int)restante);	
+					}
+					respuesta=Double.toString(restante);
+				}
 			}
 		}
+		
 		return respuesta;
 	}
 }

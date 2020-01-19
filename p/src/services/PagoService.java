@@ -28,7 +28,7 @@ private static PagoService instance;
 	public int pagar(String email,double importe) {
 		System.out.println("PagoService");
 		String ip="localhost";
-		int port= 35607;
+		int port= 35670;
 		int data2=0;
 		DataOutputStream out;
 		try {
@@ -50,6 +50,7 @@ private static PagoService instance;
 		
 		return data2;
 }
+	
 	public boolean close() {
 		System.out.println("PagoService");
 		String ip="localhost";

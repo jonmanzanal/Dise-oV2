@@ -13,8 +13,9 @@ import javax.jdo.annotations.PrimaryKey;
 public class Vuelo {
 
 	@PrimaryKey
-	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)
-	private long idvu;
+	@Persistent
+	private String idvu;
+	
 	
 	private long idavion;
 	@NotPersistent
@@ -29,6 +30,7 @@ public class Vuelo {
 	@NotPersistent
 	private int numplazas;
 	
+	
 	public int getNumplazas() {
 		return numplazas;
 	}
@@ -36,6 +38,7 @@ public class Vuelo {
 	public void setNumplazas(int numplazas) {
 		this.numplazas = numplazas;
 	}
+
 	public Aeropuerto getAeropuerto2() {
 		return aeropuerto2;
 	}
@@ -48,13 +51,13 @@ public class Vuelo {
 
 	public Vuelo() {
 		super();
-		this.idvu = 0;
+		this.idvu = "";
 		this.idavion = 0;
 		this.hora_salida="";
 		this.hora_llegada="";
+		this.numplazas=0;
 		this.aerolinea = null;
 		this.aeropuerto = null;
-		this.numplazas=0;
 	}
 
 	public String getHora_salida() {
@@ -73,11 +76,11 @@ public class Vuelo {
 		this.hora_llegada = hora_llegada;
 	}
 
-	public long getId_vu() {
+	public String getId_vu() {
 		return idvu;
 	}
 
-	public void setId_vu(long id_vu) {
+	public void setId_vu(String id_vu) {
 		this.idvu = id_vu;
 	}
 

@@ -41,7 +41,7 @@ public class Inicio extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Registro registro= new Registro(controller);
+				Registro registro= new Registro(controller,vuelocontroller);
 				registro.setVisible(true);
 				dispose();
 				

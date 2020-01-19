@@ -7,6 +7,7 @@ import javax.jdo.annotations.PersistenceCapable;
 @Discriminator(value = "Paypal")
 public class Paypal extends Metodo_pago {
 	private String usuario;
+	private double importe;
 
 	public Paypal() {
 		super();
@@ -19,6 +20,14 @@ public class Paypal extends Metodo_pago {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+
+	public double getImporte() {
+		return importe;
+	}
+
+	public void setImporte(double importe) {
+		this.importe = importe;
 	}
 
 }

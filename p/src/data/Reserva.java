@@ -1,11 +1,10 @@
 package data;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -13,25 +12,27 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Reserva {
+
 	@PrimaryKey
 	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)
-	private long idres;
+	long idres;
+	
 	
 	private int numasientos;
-	private Usuario usuario;
-	private Vuelo vuelo;
-	private List<String> listapasajeros;
+	
+	 @Column(name="idvu")
+	    Vuelo vuelo;
+	private Set<String> listapasajeros;
 	private Date fecha;
 	private double importetotal;
 	private Metodo_pago metodo;
-
+	private int res;
 	public Reserva() {
 		super();
 
 		this.numasientos = 0;
-		this.usuario = null;
 		this.vuelo = null;
-		this.listapasajeros = new ArrayList<>();
+		this.listapasajeros = new HashSet<>();
 		this.fecha = null;
 		this.importetotal = 0.0;
 		this.metodo = null;
@@ -45,14 +46,6 @@ public class Reserva {
 		this.numasientos = num_asientos;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	public Vuelo getVuelo() {
 		return vuelo;
 	}
@@ -61,11 +54,11 @@ public class Reserva {
 		this.vuelo = vuelo;
 	}
 
-	public List<String> getLista_pasajeros() {
+	public Set<String> getLista_pasajeros() {
 		return listapasajeros;
 	}
 
-	public void setLista_pasajeros(List<String> lista_pasajeros) {
+	public void setLista_pasajeros(Set<String> lista_pasajeros) {
 		this.listapasajeros = lista_pasajeros;
 	}
 
@@ -93,6 +86,12 @@ public class Reserva {
 		this.metodo = metodo;
 	}
 
-	
+	public int getRes() {
+		return res;
+	}
+
+	public void setRes(int res) {
+		this.res = res;
+	}
 
 }

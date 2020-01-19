@@ -6,6 +6,8 @@ import java.net.ServerSocket;
 public class PaypalServer {
 	
 	private static int numClients = 0;
+	public static ServerSocket tcpServerSocket;
+	
 	
 	public static void main(String args[]) {
 		if (args.length < 1) {
@@ -16,17 +18,17 @@ public class PaypalServer {
 		//args[1] = Server socket port
 		int serverPort = Integer.parseInt(args[0]);
 		
-		try (ServerSocket tcpServerSocket = new ServerSocket(serverPort);) {
-			System.out.println(" - TranslationServer: Waiting for connections '" + tcpServerSocket.getInetAddress().getHostAddress() + ":" + tcpServerSocket.getLocalPort() + "' ...");
-			
-			while (true) {
-				new PaypalService(tcpServerSocket.accept());
-				System.out.println(" - TranslationServer: New client connection accepted. Client number: " + ++numClients);
+		try{
+			tcpServerSocket = new ServerSocket(serverPort); 
+						System.out.println(" - TranslationServer: Waiting for connections '" + tcpServerSocket.getInetAddress().getHostAddress() + ":" + tcpServerSocket.getLocalPort() + "' ...");
+						
+						while (true) {
+							new PaypalService(tcpServerSocket.accept());
+							System.out.println(" - TranslationServer: New client connection accepted. Client number: " + ++numClients);
+						}
+
+			} catch(IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			System.err.println("# TranslationServer: IO error:" + e.getMessage());
-		
-			
-		}
 	}
 }

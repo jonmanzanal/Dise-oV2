@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class VueloDTO implements Serializable {
@@ -8,33 +9,40 @@ public class VueloDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private long idvu;
+	private String idvu;
 	private String hora_salida;
 	private String hora_llegada;
 	private Date fecha;
 	private double importe;
-	private AeropuertoDTO origen;
-	private AeropuertoDTO destino;
+	private String origen;
+	private String destino;
+	private int numplazas;
 	
 	
-	public AeropuertoDTO getOrigen() {
+	public int getNumplazas() {
+		return numplazas;
+	}
+	public void setNumplazas(int numplazas) {
+		this.numplazas = numplazas;
+	}
+	public String getOrigen() {
 		return origen;
 	}
-	public void setOrigen(AeropuertoDTO origen) {
+	public void setOrigen(String origen) {
 		this.origen = origen;
 	}
-	public AeropuertoDTO getDestino() {
+	public String getDestino() {
 		return destino;
 	}
-	public void setDestino(AeropuertoDTO destino) {
+	public void setDestino(String destino) {
 		this.destino = destino;
 	}
 	
 	
-	public long getIdvu() {
+	public String getIdvu() {
 		return idvu;
 	}
-	public void setIdvu(long idvu) {
+	public void setIdvu(String idvu) {
 		this.idvu = idvu;
 	}
 	public String getHora_salida() {
@@ -63,9 +71,14 @@ public class VueloDTO implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "VueloDTO [idvu=" + idvu + ", hora_salida=" + hora_salida + ", hora_llegada=" + hora_llegada + ", fecha="
-				+ fecha + ", importe=" + importe + ", origen=" + origen + ", destino=" + destino + "]";
+		
+		DecimalFormat format = new DecimalFormat("#.00");
+		
+		return "Idvu="+ idvu +" (" + hora_salida + "-" + hora_llegada + ") "
+				+ fecha.getDay()+"/"+fecha.getMonth()+1+"/"+fecha.getYear() + " " + format.format(importe)+ "€ " + origen + " - " + destino + "Disp:"
+				+ numplazas;
 	}
+	
 	
 	
 	

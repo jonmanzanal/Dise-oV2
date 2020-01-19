@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 
@@ -15,7 +16,7 @@ public class AeropuertoDTO implements Serializable{
 	private String idaero;
 	private String nombre;
 	private int num_terminales;
-	private Set<VueloDTO> vuelos;
+	private List<VueloDTO> vuelos;
 	
 	public String getIdaero() {
 		return idaero;
@@ -35,10 +36,10 @@ public class AeropuertoDTO implements Serializable{
 	public void setNum_terminales(int num_terminales) {
 		this.num_terminales = num_terminales;
 	}
-	public Set<VueloDTO> getVuelos() {
+	public List<VueloDTO> getVuelos() {
 		return vuelos;
 	}
-	public void setVuelos(Set<VueloDTO> vuelos) {
+	public void setVuelos(List<VueloDTO> vuelos) {
 		this.vuelos = vuelos;
 	}
 	

@@ -5,15 +5,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 import iberia_remote.IberiaFacade;
 
 public class Iberia  extends UnicastRemoteObject implements IberiaFacade {
 	
-	private static Set<Flight> vuelos=new HashSet<Flight>();
+	private static List<Flight> vuelos=new ArrayList<Flight>();
 	private static Iberia instance;
 		/**
 		 * 
@@ -46,20 +45,25 @@ public class Iberia  extends UnicastRemoteObject implements IberiaFacade {
 		}
 
 	@Override
-	public Set<Flight> getVuelos() throws RemoteException {
+	public List<Flight> getVuelos() throws RemoteException {
 		System.out.println("entra a iberia para consguir vuelos flight");
 		return vuelos;
 	}
-
+	
+	
 	@Override
 	public boolean disminuirasientos(int asientos, String cod) throws RemoteException {
+		System.out.println("entra a iberia ya");
 		int res=0;
 		for (Flight flight : vuelos) {
-			if(flight.getCod_vuelo()==cod) {
-				res=flight.getNumplazas();
-				res=res-asientos;
-				flight.setNumplazas(res);
+			System.out.println(flight.getCod_vuelo());
+			System.out.println(cod);
+			if(flight.getCod_vuelo().equals(cod)) {
+				System.out.println("entra codigo igual");
+				res=flight.getNumplazas()-asientos;
 				if(res<flight.getNumplazas()) {
+					flight.setNumplazas(res);
+					System.out.println("Plazas restantes:"+res);
 					return true;
 				}
 			}

@@ -2,9 +2,7 @@ package IberiaRMI;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import data.Aeropuerto;
 import data.Vuelo;
@@ -19,11 +17,11 @@ public class ConexionIberia implements IGatewayIberia {
 	}
 
 	@Override
-	public Set<Vuelo> buscarVuelos() {
+	public List<Vuelo> buscarVuelos() {
 		try {
 			System.out.println("conexion iberia buscar vuelos");
-			Set<Flight> flights= this.serviceLocator.getService().getVuelos();
-			Set<Vuelo> vuelos = new HashSet <Vuelo>();
+			List<Flight> flights= this.serviceLocator.getService().getVuelos();
+			List<Vuelo> vuelos = new ArrayList <Vuelo>();
 			for(Flight f:flights) {
 				System.out.println("syso para f");
 				System.out.println(f.getCod_avion());
@@ -38,10 +36,11 @@ public class ConexionIberia implements IGatewayIberia {
 				long id_vu= Long.parseLong(f.getCod_vuelo());
 				v.setId_avion(id_av);
 				v.setAeropuerto(a);
-				v.setId_vu(id_vu);
+				v.setId_vu(f.getCod_vuelo());
 				v.setAeropuerto2(b);
 				v.setHora_llegada("10:30");
 				v.setHora_salida("8:00");
+				v.setNumplazas(f.getNumplazas());
 				vuelos.add(v);
 				System.out.println("syso para v");
 				System.out.println(v.getId_avion());
@@ -53,10 +52,11 @@ public class ConexionIberia implements IGatewayIberia {
 			return null;
 		}
 	}
-
+	
 	@Override
 	public boolean disminiuirasientos(int asientos,String cod) {
 		try {
+			System.out.println("entra conexioniberia");
 			return this.serviceLocator.getService().disminuirasientos(asientos, cod);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -65,5 +65,6 @@ public class ConexionIberia implements IGatewayIberia {
 		return false;
 		
 	}
+	
 
 }

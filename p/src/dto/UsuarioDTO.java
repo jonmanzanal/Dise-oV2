@@ -16,11 +16,12 @@ public class UsuarioDTO implements Serializable {
 	private String apellidos;
 	private int tiporedsocial;
 	private AeropuertoDTO aeropuertopordefecto;
-	private Set<Reserva> reserva;
-	public Set<Reserva> getReserva() {
+	private Set<ReservaDTO> reserva;
+	
+	public Set<ReservaDTO> getReserva() {
 		return reserva;
 	}
-	public void setReserva(Set<Reserva> reserva) {
+	public void setReserva(Set<ReservaDTO> reserva) {
 		this.reserva = reserva;
 	}
 	public AeropuertoDTO getAeropuertopordefecto() {

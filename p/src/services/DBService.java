@@ -1,5 +1,6 @@
 package services;
 
+import data.Paypal;
 import data.Reserva;
 import db.GestorBD;
 import dto.ReservaAssembler;
@@ -19,9 +20,21 @@ private static DBService instance;
 	}
 	
 	public void guardardato(ReservaDTO dto) {
+		System.out.println("Entra DBService");
 		Reserva r=new Reserva();
+		System.out.println("antes de assembler");
 		r=ReservaAssembler.getInstance().DTOToReserva(dto);
-		GestorBD.getInstance().store(r);
+		System.out.println("despues de assembler va al store");
+		GestorBD.getInstance().updateReservas(dto.getUsuariodto().getEmail(), r);
 	
 	}
-}
+	public void guardarpago(Paypal pay) {
+		System.out.println("Entra DBService p");
+		System.out.println("pay");
+		GestorBD.getInstance().store(pay);
+		
+	
+	}
+	
+	
+	}

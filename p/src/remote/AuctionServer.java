@@ -2,11 +2,15 @@ package remote;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import data.Paypal;
 import data.Usuario;
 import dto.ReservaDTO;
+import dto.UsuarioDTO;
 import dto.VueloDTO;
 import services.AeroIbService;
 import services.DBService;
@@ -49,13 +53,13 @@ public class AuctionServer  extends UnicastRemoteObject implements IAuction {
 	}
 
 	@Override
-	public Set<VueloDTO> getVuelos() throws RemoteException {
+	public List<VueloDTO> getVuelos() throws RemoteException, ParseException {
 		System.out.println("Buscando vuelos");
 		
 		return AeroIbService.getInstance().getVuelos();
 	}
 
-	
+
 
 	@Override
 	public boolean registro(String email) throws RemoteException {
@@ -71,7 +75,12 @@ public class AuctionServer  extends UnicastRemoteObject implements IAuction {
 		a=PagoService.getInstance().pagar(usuario, importe);
 		System.out.println("El int es "+a);
 		if(a>0) {
+			Paypal p=new Paypal();
+			p.setImporte(importe);
+			p.setUsuario(usuario);
+			DBService.getInstance().guardarpago(p);			
 			System.out.println("Pago completado con exito");
+			
 			return true;
 		}
 		System.out.println("Pago no completado, supera su saldo");
@@ -79,21 +88,26 @@ public class AuctionServer  extends UnicastRemoteObject implements IAuction {
 	}
 
 	@Override
-	public void guardardato(ReservaDTO dto) throws RemoteException {
-		 DBService.getInstance().guardardato(dto);
-		
-	}
-	@Override
 	public boolean close() throws RemoteException {
 		boolean b=PagoService.getInstance().close();
 		return b;
 	}
 
+	
+	@Override
+	public void guardardato(ReservaDTO resdto) throws RemoteException {
+		System.out.println("Entra fachada server");
+		 DBService.getInstance().guardardato(resdto);
+		
+	}
+
 	@Override
 	public boolean disminuirasientos(int asientos, String cod) {
+		System.out.println("asientos-entra fachada");
 		boolean c=AeroIbService.getInstance().disminuirasientos(asientos, cod);
 		return c;
 	}
+
 
 
 }

@@ -20,6 +20,8 @@ public class Google extends UnicastRemoteObject implements IGoogle {
 			try {
 				instance = new Google();
 				usuarios.add(new DatosG("jese","joso","Ramon","Mcpato"));
+				usuarios.add(new DatosG("andres","quijote","Andres","Creso"));
+				usuarios.add(new DatosG("asucar","moreno","Asusena","bmw"));
 				System.out.println("aa");
 			} catch (Exception ex) {
 				System.err.println("# Error creating RemoteFacade: " + ex);

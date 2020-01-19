@@ -22,7 +22,7 @@ public class AeropuertoAssembler {
 		dto.setIdaero(aeropuerto.getIdaero());
 		dto.setNombre(aeropuerto.getNombre());
 		dto.setNum_terminales(aeropuerto.getNum_terminales());
-		dto.setVuelos(VueloAssembler.getInstance().entityToDTOs(aeropuerto.getVuelos()));
+		//dto.setVuelos(VueloAssembler.getInstance().entityToDTOs(aeropuerto.getVuelos()));
 		
 		
 				
@@ -35,7 +35,7 @@ public class AeropuertoAssembler {
 		aeropuerto.setIdaero(dto.getIdaero());
 		aeropuerto.setNombre(dto.getNombre());
 		aeropuerto.setNum_terminales(dto.getNum_terminales());
-		aeropuerto.setVuelos(VueloAssembler.getInstance().DTOtoentitys(dto.getVuelos()));
+		//aeropuerto.setVuelos(VueloAssembler.getInstance().DTOtoentitys(dto.getVuelos()));
 		
 		
 				

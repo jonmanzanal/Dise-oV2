@@ -1,8 +1,8 @@
 package controller;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.List;
-import java.util.Set;
 
 import dto.ReservaDTO;
 import dto.VueloDTO;
@@ -15,7 +15,7 @@ public class VueloController {
 		this.serviceLocator = serviceLocator;
 	}
 	
-	public Set<VueloDTO> buscarVuelos() {
+	public List<VueloDTO> buscarVuelos() throws ParseException {
 		System.out.println("controller vuelo");
 		try {
 			return this.serviceLocator.getService().getVuelos();
@@ -27,14 +27,15 @@ public class VueloController {
 	
 	public boolean pagar(String usuario,int importe) {
 		
-		boolean b;
+		
 		try {
-			b=this.serviceLocator.getService().pagar(usuario, importe);
+			return this.serviceLocator.getService().pagar(usuario, importe);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return true;
+		return false;
 	}
+	
 	public boolean close() {
 		try {
 			return this.serviceLocator.getService().close();
@@ -46,24 +47,31 @@ public class VueloController {
 	
 	public boolean almacenarReserva(ReservaDTO res) {
 		try {
-			System.out.println("Entra VueloController");
+			System.out.println("entra vuelocontroller");
 			this.serviceLocator.getService().guardardato(res);
+			System.out.println("despues vuelocontroller");
 			return true;
 		}catch (RemoteException e) {
+			System.out.println("Excepcion aqui en controller");
 			e.printStackTrace();
 		}
 		
 		return false;
 		
 	}
+	
 	public boolean disminuirasientos(int asientos,String cod) {
 		try {
-			this.serviceLocator.getService().disminuirasientos(asientos, cod);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Asinentos-Entra vuelocontroller ");
+			return this.serviceLocator.getService().disminuirasientos(asientos, cod);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return true;
+		
+		return false;
 	}
+	
+	
+	
 	
 	}

@@ -3,6 +3,8 @@ package gui;
 import javax.swing.JFrame;
 
 import controller.LoginController;
+import controller.VueloController;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,9 +19,11 @@ public class Registro extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	public LoginController controller;
+	public VueloController vuelocontroller;
 	private JTextField textField;
-	public Registro(LoginController controller) {
+	public Registro(LoginController controller, VueloController vuelocontrol) {
 		this.controller = controller;
+		this.vuelocontroller=vuelocontrol;
 		iniciarRegistro();
 	}
 	
@@ -55,6 +59,10 @@ public class Registro extends JFrame {
 	public void registro(String email) {
 		boolean b = controller.registro(email);
 		if(b) {
+			JOptionPane.showMessageDialog(null, "Registro OK.Inicie sesion");
+			Inicio ini=new Inicio(controller,vuelocontroller);
+			ini.setVisible(true);
+			dispose();
 			System.out.println("registro ok");
 		}
 

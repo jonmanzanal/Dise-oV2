@@ -5,23 +5,30 @@ import java.util.Set;
 
 import javax.jdo.annotations.Element;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Usuario {
 	
+	
+
+	
 	@PrimaryKey
 	private String email;
 	
-	private long idusu;
 	
 	private String nombre;
 	private String apellidos;
+	private long idusu;
 	private Aeropuerto aeropuertopordefecto;
 	private int tiporedsocial;
-	@Element(column="email")
-	private Set<Reserva> reserva;
 
+	
+	@Element(column="email")
+    Set<Reserva> reservas;
+	
+	
 	public Usuario() {
 		super();
 		this.email = "";
@@ -29,7 +36,7 @@ public class Usuario {
 		this.apellidos = "";
 		this.aeropuertopordefecto = null;
 		this.tiporedsocial = 0;
-		this.reserva = new HashSet<Reserva>(); //;
+		this.reservas = new HashSet<Reserva>(); //;
 	}
 
 	public long getId_usu() {
@@ -72,12 +79,12 @@ public class Usuario {
 		this.tiporedsocial = tiporedsocial;
 	}
 
-	public Set<Reserva> getReserva() {
-		return reserva;
+	public Set<Reserva> getReservas() {
+		return reservas;
 	}
 
-	public void setReserva(Set<Reserva> reserva) {
-		this.reserva = reserva;
+	public void setReservas(Set<Reserva> reservas) {
+		this.reservas = reservas;
 	}
 
 	public String getNombre() {

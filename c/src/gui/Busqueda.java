@@ -1,5 +1,22 @@
 package gui;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import controller.LoginController;
+import controller.VueloController;
+import dto.UsuarioDTO;
+import dto.VueloDTO;
+
+
+
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -7,10 +24,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
@@ -21,23 +37,25 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 
-import controller.VueloController;
-import dto.UsuarioDTO;
 import dto.VueloDTO;
 import javax.swing.JScrollBar;
 
 public class Busqueda extends JFrame {
+ 
+	
 	private static int contadorClose=0;
-	public Set<VueloDTO> vuelos=new HashSet<VueloDTO>();
 	public VueloController controller;
+	public LoginController logincontroller;
+	public List <VueloDTO> vuelos=new ArrayList<VueloDTO>();
 	private JTextField textField;
 	private JTextField textField_1;
 	private String c;
 	private String u;
-	private String usu;
-	public Busqueda(VueloController controller,String conexion,String usuario) {
+	private  String usu;
+	public Busqueda(VueloController controller,String conexion,String usuario,LoginController logincont) {
 		this.controller = controller;
 		this.usu=usuario;
+		this.logincontroller=logincont;
 		if(conexion.equals("si")) {
 			contadorClose++;
 		}
@@ -50,28 +68,72 @@ public class Busqueda extends JFrame {
 		this.setSize(600,400);
 		
 		DefaultListModel<VueloDTO> modelo = new DefaultListModel<VueloDTO>();
-		JButton btnNewButton = new JButton("BuscarVuelos");
-		btnNewButton.setBounds(37, 216, 109, 23);
-		getContentPane().add(btnNewButton);
 		
+		JButton btnNewButton4 = new JButton("BuscarVuelos");
+		btnNewButton4.setBounds(37, 216, 109, 23);
+		getContentPane().add(btnNewButton4);
+
 		JList<VueloDTO> list_1 = new JList<VueloDTO>(modelo );
-		list_1.setBounds(37, 24, 410, 151);
+		list_1.setBounds(37, 24, 530, 151);
 		getContentPane().add(list_1);
 		
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(457, 24, 17, 151);
 		getContentPane().add(scrollBar);
 		
+		/*
+		JButton btnNewButton = new JButton("Vuelos");
+		btnNewButton.setBounds(284, 203, 89, 23);
+		getContentPane().add(btnNewButton);
+		
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				vuelos= controller.buscarVuelos();
+				List <VueloDTO> vuelos= controller.buscarVuelos();
+				for(VueloDTO v:vuelos) {
+					System.out.println(v.toString());
+				}
+			}
+		});
+		
+		*/
+btnNewButton4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					vuelos= controller.buscarVuelos();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				modelo.addAll(vuelos);
 				}
 			
 		});
 		
+	
+
+
+			if(contadorClose>1) {
+				
+				JButton btnNewButton = new JButton("Close");
+				btnNewButton.setBounds(219, 216, 89, 23);
+				getContentPane().add(btnNewButton);
+				
+				btnNewButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						boolean close= controller.close();
+						
+					}
+					
+				});
+				
+			}
 		
 		
 		list_1.setCellRenderer((ListCellRenderer) new DefaultListCellRenderer(){
@@ -96,6 +158,22 @@ public class Busqueda extends JFrame {
 	        
 		});
 		
+		JButton btnNewButton_1 = new JButton("Log Out");
+		btnNewButton_1.setBounds(37, 327, 89, 23);
+		getContentPane().add(btnNewButton_1);
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Inicio ini= new Inicio(logincontroller,controller);
+				ini.setVisible(true);
+				dispose();
+				
+			}
+		});
+		
+		
 		String s=null;
 		MouseListener mouseListener = new MouseAdapter() 
 		{
@@ -116,6 +194,7 @@ public class Busqueda extends JFrame {
 		    }
 		};
 		list_1.addMouseListener(mouseListener);
+		
 		
 		
 	}
