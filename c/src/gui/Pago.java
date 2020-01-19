@@ -26,7 +26,6 @@ public class Pago extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
 	public VueloController controller;
 	private VueloDTO vuelodto;
 	private UsuarioDTO usu;
@@ -39,7 +38,7 @@ public class Pago extends JFrame {
 		initcomponentes();
 	}
 	public void initcomponentes() {
-		setSize(720, 480);
+		setSize(100, 100);
 		JTextField anadir = new JTextField();;
 		List<String> c=new ArrayList<String>();
 		
@@ -57,16 +56,11 @@ public class Pago extends JFrame {
 		getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("RealizarReserva");
-		btnNewButton.setBounds(270, 196, 124, 23);
+		btnNewButton.setBounds(37, 107, 124, 23);
 		getContentPane().add(btnNewButton);
 		
-		textField = new JTextField();
-		textField.setBounds(37, 134, 41, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(141, 40, 89, 23);
+		JButton btnNewButton_1 = new JButton("A\u00F1adir pasajeros");
+		btnNewButton_1.setBounds(141, 40, 118, 23);
 		getContentPane().add(btnNewButton_1);
 		
 		JButton btnClose = new JButton("Close");
@@ -99,7 +93,8 @@ public class Pago extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 boolean pagoresult= controller.pagar(usu.getEmail(),(int)Pago.this.vuelodto.getImporte()*c.size());
-				
+boolean disminiur=controller.disminuirasientos(c.size(), Long.toString(vuelodto.getIdvu()));
+System.out.println(disminiur);
 				if(pagoresult) {
 					System.out.println("Pago realizado con exito");
 					numres++;
@@ -118,12 +113,13 @@ boolean pagoresult= controller.pagar(usu.getEmail(),(int)Pago.this.vuelodto.getI
 					boolean almacenado= controller.almacenarReserva(reserva);
 					if(almacenado) {
 						System.out.println("Reserva creada y almacenada");
+						
 					}
 				}
 				//Joption volver al menu > OK > crear ventana de Busqueda con string si.
 				
 			}
-				boolean pagoresult= controller.pagar("pepe", (int) (c.size()*Pago.this.vuelodto.getImporte()));
+				//boolean pagoresult= controller.pagar("pepe", (int) (c.size()*Pago.this.vuelodto.getImporte()));
 				
 			
 		});

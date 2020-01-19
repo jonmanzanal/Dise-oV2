@@ -51,4 +51,20 @@ public class Iberia  extends UnicastRemoteObject implements IberiaFacade {
 		return vuelos;
 	}
 
+	@Override
+	public boolean disminuirasientos(int asientos, String cod) throws RemoteException {
+		int res=0;
+		for (Flight flight : vuelos) {
+			if(flight.getCod_vuelo()==cod) {
+				res=flight.getNumplazas();
+				res=res-asientos;
+				flight.setNumplazas(res);
+				if(res<flight.getNumplazas()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 }

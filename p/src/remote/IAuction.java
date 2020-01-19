@@ -14,4 +14,5 @@ public interface IAuction extends Remote{
 	public void guardardato(ReservaDTO dto) throws RemoteException;
 	public boolean pagar(String usuario, int importe) throws RemoteException;
 	boolean close() throws RemoteException;
+	public boolean disminuirasientos(int asientos,String cod)throws RemoteException;
 }

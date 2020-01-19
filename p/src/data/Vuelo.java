@@ -3,13 +3,19 @@ package data;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Vuelo {
 
+	@PrimaryKey
+	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)
 	private long idvu;
+	
 	private long idavion;
 	@NotPersistent
 	private String hora_salida;
@@ -20,7 +26,16 @@ public class Vuelo {
 	private Aeropuerto aeropuerto;
 	@NotPersistent
 	private Aeropuerto aeropuerto2;
+	@NotPersistent
+	private int numplazas;
+	
+	public int getNumplazas() {
+		return numplazas;
+	}
 
+	public void setNumplazas(int numplazas) {
+		this.numplazas = numplazas;
+	}
 	public Aeropuerto getAeropuerto2() {
 		return aeropuerto2;
 	}
@@ -39,6 +54,7 @@ public class Vuelo {
 		this.hora_llegada="";
 		this.aerolinea = null;
 		this.aeropuerto = null;
+		this.numplazas=0;
 	}
 
 	public String getHora_salida() {

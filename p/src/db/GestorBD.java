@@ -221,6 +221,28 @@ public class GestorBD implements IGestionDAO{
 	}
 		return reserva;
 	}
-	
+	public void updateReservas(String id_usuario,Reserva reserva) {
+	    persistentManager = pmf.getPersistenceManager();
+	    Transaction transaction=null;
+	    transaction=persistentManager.currentTransaction();
+	    
+	    try {
+	        transaction.begin();
+
+	        Usuario u = persistentManager.getObjectById(Usuario.class,id_usuario);
+	        Set <Reserva> reservas= u.getReservas();
+	        reservas.add(reserva);
+	        u.setReservas(reservas);
+	       
+	        
+
+	        transaction.commit();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        transaction.rollback();
+	    } finally {
+	        persistentManager.close();
+	    }
+	}
 	
 }

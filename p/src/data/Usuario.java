@@ -3,18 +3,23 @@ package data;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.jdo.annotations.Element;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Usuario {
-
-	private long idusu;
+	
+	@PrimaryKey
 	private String email;
+	
+	private long idusu;
+	
 	private String nombre;
 	private String apellidos;
 	private Aeropuerto aeropuertopordefecto;
 	private int tiporedsocial;
-
+	@Element(column="email")
 	private Set<Reserva> reserva;
 
 	public Usuario() {

@@ -6,12 +6,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 public class Reserva {
-
-	private int res;
+	@PrimaryKey
+	@Persistent(valueStrategy=IdGeneratorStrategy.INCREMENT)
+	private long idres;
+	
 	private int numasientos;
 	private Usuario usuario;
 	private Vuelo vuelo;
@@ -88,12 +93,6 @@ public class Reserva {
 		this.metodo = metodo;
 	}
 
-	public int getRes() {
-		return res;
-	}
-
-	public void setRes(int res) {
-		this.res = res;
-	}
+	
 
 }

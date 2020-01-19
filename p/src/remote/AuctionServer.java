@@ -89,5 +89,11 @@ public class AuctionServer  extends UnicastRemoteObject implements IAuction {
 		return b;
 	}
 
+	@Override
+	public boolean disminuirasientos(int asientos, String cod) {
+		boolean c=AeroIbService.getInstance().disminuirasientos(asientos, cod);
+		return c;
+	}
+
 
 }

@@ -31,4 +31,9 @@ private static AeroIbService instance;
 		return VueloAssembler.getInstance().entityToDTOs(ci.buscarVuelos());
 
 }
+	public boolean disminuirasientos(int asientos,String cod) {
+		ConexionIberia ci= IberiaMain.Loko();
+		return ci.disminiuirasientos(asientos, cod);
+	}
+	
 }

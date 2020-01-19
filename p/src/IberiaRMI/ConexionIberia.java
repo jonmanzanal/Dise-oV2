@@ -54,4 +54,16 @@ public class ConexionIberia implements IGatewayIberia {
 		}
 	}
 
+	@Override
+	public boolean disminiuirasientos(int asientos,String cod) {
+		try {
+			return this.serviceLocator.getService().disminuirasientos(asientos, cod);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
+
 }

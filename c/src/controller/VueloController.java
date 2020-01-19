@@ -56,5 +56,14 @@ public class VueloController {
 		return false;
 		
 	}
+	public boolean disminuirasientos(int asientos,String cod) {
+		try {
+			this.serviceLocator.getService().disminuirasientos(asientos, cod);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+	}
 	
 	}

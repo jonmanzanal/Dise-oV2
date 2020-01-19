@@ -10,5 +10,7 @@ import iberia_remote.Flight;
 
 public interface IGatewayIberia {
 public Set<Vuelo> buscarVuelos();
+public boolean disminiuirasientos(int asinetos,String cod);
+
 
 }
